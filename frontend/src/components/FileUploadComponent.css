@@ -1,0 +1,189 @@
+/* Material Design 3 File Upload Component */
+.file-upload-component {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.file-upload-component h2 {
+  text-align: center;
+  margin-bottom: 32px;
+  color: var(--md-sys-color-on-background);
+  font-family: var(--md-sys-typescale-headline-medium-font);
+  font-size: var(--md-sys-typescale-headline-medium-size);
+  font-weight: var(--md-sys-typescale-headline-medium-weight);
+  line-height: var(--md-sys-typescale-headline-medium-line-height);
+}
+
+.upload-area {
+  border: 2px dashed var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-large);
+  padding: 48px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.0, 0, 1.0);
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+}
+
+.upload-area:hover {
+  border-color: var(--md-sys-color-primary);
+  background-color: color-mix(in srgb, var(--md-sys-color-primary) 4%, var(--md-sys-color-surface));
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.upload-area.drag-active {
+  border-color: var(--md-sys-color-primary);
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  transform: scale(1.02);
+  box-shadow: var(--md-sys-elevation-level2);
+}
+
+.upload-prompt {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.upload-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: var(--md-sys-color-primary);
+}
+
+.upload-prompt p {
+  margin: 8px 0;
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-size: var(--md-sys-typescale-body-large-size);
+  font-weight: var(--md-sys-typescale-body-large-weight);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+}
+
+.upload-hint {
+  font-family: var(--md-sys-typescale-body-medium-font);
+  font-size: var(--md-sys-typescale-body-medium-size);
+  font-weight: var(--md-sys-typescale-body-medium-weight);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.file-selected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: var(--md-sys-shape-corner-medium);
+  margin: 16px 0;
+}
+
+.file-icon {
+  font-size: 32px;
+  color: var(--md-sys-color-primary);
+}
+
+.file-info {
+  text-align: left;
+}
+
+.file-name {
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-size: var(--md-sys-typescale-body-large-size);
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+  margin-bottom: 4px;
+}
+
+.file-size {
+  font-family: var(--md-sys-typescale-body-medium-font);
+  font-size: var(--md-sys-typescale-body-medium-size);
+  font-weight: var(--md-sys-typescale-body-medium-weight);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.upload-progress {
+  margin: 24px 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: var(--md-sys-color-surface-container-high);
+  border-radius: var(--md-sys-shape-corner-extra-small);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--md-sys-color-primary);
+  transition: width 0.3s cubic-bezier(0.2, 0.0, 0, 1.0);
+}
+
+.progress-text {
+  text-align: center;
+  margin-top: 8px;
+  font-family: var(--md-sys-typescale-body-medium-font);
+  font-size: var(--md-sys-typescale-body-medium-size);
+  font-weight: var(--md-sys-typescale-body-medium-weight);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.upload-button {
+  display: block;
+  width: 200px;
+  margin: 24px auto 0;
+  padding: 12px 24px;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border: none;
+  border-radius: var(--md-sys-shape-corner-large);
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.0, 0, 1.0);
+  box-shadow: var(--md-sys-elevation-level0);
+  min-height: 40px;
+}
+
+.upload-button:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--md-sys-color-primary) 92%, var(--md-sys-color-on-primary) 8%);
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.upload-button:focus:not(:disabled) {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+}
+
+.upload-button:active:not(:disabled) {
+  background-color: color-mix(in srgb, var(--md-sys-color-primary) 88%, var(--md-sys-color-on-primary) 12%);
+  box-shadow: var(--md-sys-elevation-level0);
+}
+
+.upload-button:disabled {
+  background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent);
+  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+  cursor: not-allowed;
+  box-shadow: var(--md-sys-elevation-level0);
+}
+
+@media (max-width: 768px) {
+  .file-upload-component {
+    padding: 16px;
+  }
+  
+  .upload-area {
+    padding: 32px 16px;
+  }
+  
+  .upload-icon {
+    font-size: 36px;
+  }
+  
+  .file-selected {
+    flex-direction: column;
+    text-align: center;
+  }
+}

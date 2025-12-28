@@ -1,0 +1,291 @@
+/* Material Design 3 Color System with Dark Forest Green & White */
+:root {
+  /* Primary Colors - Dark Forest Green */
+  --md-sys-color-primary: #1B5E20;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: #A5D6A7;
+  --md-sys-color-on-primary-container: #0D2818;
+  
+  /* Secondary Colors */
+  --md-sys-color-secondary: #2E7D32;
+  --md-sys-color-on-secondary: #FFFFFF;
+  --md-sys-color-secondary-container: #C8E6C9;
+  --md-sys-color-on-secondary-container: #1B5E20;
+  
+  /* Tertiary Colors */
+  --md-sys-color-tertiary: #388E3C;
+  --md-sys-color-on-tertiary: #FFFFFF;
+  --md-sys-color-tertiary-container: #DCEDC8;
+  --md-sys-color-on-tertiary-container: #1B5E20;
+  
+  /* Error Colors */
+  --md-sys-color-error: #BA1A1A;
+  --md-sys-color-on-error: #FFFFFF;
+  --md-sys-color-error-container: #FFDAD6;
+  --md-sys-color-on-error-container: #410002;
+  
+  /* Surface Colors */
+  --md-sys-color-surface: #FFFFFF;
+  --md-sys-color-on-surface: #1B5E20;
+  --md-sys-color-surface-variant: #F1F8E9;
+  --md-sys-color-on-surface-variant: #2E7D32;
+  --md-sys-color-surface-container: #F8F9FA;
+  --md-sys-color-surface-container-high: #E8F5E8;
+  --md-sys-color-surface-container-highest: #E0F2E0;
+  
+  /* Outline Colors */
+  --md-sys-color-outline: #66BB6A;
+  --md-sys-color-outline-variant: #C8E6C9;
+  
+  /* Background */
+  --md-sys-color-background: #FFFFFF;
+  --md-sys-color-on-background: #1B5E20;
+  
+  /* Success Colors (Custom) */
+  --md-sys-color-success: #2E7D32;
+  --md-sys-color-on-success: #FFFFFF;
+  --md-sys-color-success-container: #C8E6C9;
+  --md-sys-color-on-success-container: #1B5E20;
+  
+  /* Warning Colors (Custom) */
+  --md-sys-color-warning: #F57C00;
+  --md-sys-color-on-warning: #FFFFFF;
+  --md-sys-color-warning-container: #FFE0B2;
+  --md-sys-color-on-warning-container: #E65100;
+  
+  /* Material Design 3 Typography Scale */
+  --md-sys-typescale-display-large-font: 'Roboto', sans-serif;
+  --md-sys-typescale-display-large-size: 57px;
+  --md-sys-typescale-display-large-weight: 400;
+  --md-sys-typescale-display-large-line-height: 64px;
+  
+  --md-sys-typescale-headline-large-font: 'Roboto', sans-serif;
+  --md-sys-typescale-headline-large-size: 32px;
+  --md-sys-typescale-headline-large-weight: 400;
+  --md-sys-typescale-headline-large-line-height: 40px;
+  
+  --md-sys-typescale-headline-medium-font: 'Roboto', sans-serif;
+  --md-sys-typescale-headline-medium-size: 28px;
+  --md-sys-typescale-headline-medium-weight: 400;
+  --md-sys-typescale-headline-medium-line-height: 36px;
+  
+  --md-sys-typescale-title-large-font: 'Roboto', sans-serif;
+  --md-sys-typescale-title-large-size: 22px;
+  --md-sys-typescale-title-large-weight: 400;
+  --md-sys-typescale-title-large-line-height: 28px;
+  
+  --md-sys-typescale-body-large-font: 'Roboto', sans-serif;
+  --md-sys-typescale-body-large-size: 16px;
+  --md-sys-typescale-body-large-weight: 400;
+  --md-sys-typescale-body-large-line-height: 24px;
+  
+  --md-sys-typescale-body-medium-font: 'Roboto', sans-serif;
+  --md-sys-typescale-body-medium-size: 14px;
+  --md-sys-typescale-body-medium-weight: 400;
+  --md-sys-typescale-body-medium-line-height: 20px;
+  
+  --md-sys-typescale-label-large-font: 'Roboto', sans-serif;
+  --md-sys-typescale-label-large-size: 14px;
+  --md-sys-typescale-label-large-weight: 500;
+  --md-sys-typescale-label-large-line-height: 20px;
+  
+  /* Material Design 3 Shape Scale */
+  --md-sys-shape-corner-none: 0px;
+  --md-sys-shape-corner-extra-small: 4px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-large: 28px;
+  
+  /* Material Design 3 Elevation */
+  --md-sys-elevation-level0: none;
+  --md-sys-elevation-level1: 0px 1px 2px 0px rgba(27, 94, 32, 0.3), 0px 1px 3px 1px rgba(27, 94, 32, 0.15);
+  --md-sys-elevation-level2: 0px 1px 2px 0px rgba(27, 94, 32, 0.3), 0px 2px 6px 2px rgba(27, 94, 32, 0.15);
+  --md-sys-elevation-level3: 0px 1px 3px 0px rgba(27, 94, 32, 0.3), 0px 4px 8px 3px rgba(27, 94, 32, 0.15);
+  --md-sys-elevation-level4: 0px 2px 3px 0px rgba(27, 94, 32, 0.3), 0px 6px 10px 4px rgba(27, 94, 32, 0.15);
+  --md-sys-elevation-level5: 0px 4px 4px 0px rgba(27, 94, 32, 0.3), 0px 8px 12px 6px rgba(27, 94, 32, 0.15);
+}
+
+/* Import Roboto font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-size: var(--md-sys-typescale-body-large-size);
+  font-weight: var(--md-sys-typescale-body-large-weight);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  color: var(--md-sys-color-on-background);
+  background-color: var(--md-sys-color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'Roboto Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Material Design 3 Button Styles */
+.md-filled-button {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border: none;
+  border-radius: var(--md-sys-shape-corner-large);
+  padding: 10px 24px;
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.0, 0, 1.0);
+  box-shadow: var(--md-sys-elevation-level0);
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.md-filled-button:hover:not(:disabled) {
+  box-shadow: var(--md-sys-elevation-level1);
+  background-color: color-mix(in srgb, var(--md-sys-color-primary) 92%, var(--md-sys-color-on-primary) 8%);
+}
+
+.md-filled-button:focus:not(:disabled) {
+  box-shadow: var(--md-sys-elevation-level0);
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+}
+
+.md-filled-button:active:not(:disabled) {
+  box-shadow: var(--md-sys-elevation-level0);
+  background-color: color-mix(in srgb, var(--md-sys-color-primary) 88%, var(--md-sys-color-on-primary) 12%);
+}
+
+.md-filled-button:disabled {
+  background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent);
+  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+  cursor: not-allowed;
+  box-shadow: var(--md-sys-elevation-level0);
+}
+
+.md-outlined-button {
+  background-color: transparent;
+  color: var(--md-sys-color-primary);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-large);
+  padding: 10px 24px;
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.0, 0, 1.0);
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.md-outlined-button:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--md-sys-color-primary) 8%, transparent);
+  border-color: var(--md-sys-color-primary);
+}
+
+.md-outlined-button:focus:not(:disabled) {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+  border-color: var(--md-sys-color-primary);
+}
+
+.md-outlined-button:active:not(:disabled) {
+  background-color: color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent);
+}
+
+.md-outlined-button:disabled {
+  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+  border-color: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent);
+  cursor: not-allowed;
+}
+
+/* Material Design 3 Card Styles */
+.md-card {
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  border-radius: var(--md-sys-shape-corner-medium);
+  box-shadow: var(--md-sys-elevation-level1);
+  transition: box-shadow 0.2s cubic-bezier(0.2, 0.0, 0, 1.0);
+}
+
+.md-card:hover {
+  box-shadow: var(--md-sys-elevation-level2);
+}
+
+.md-card-elevated {
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.md-card-filled {
+  background-color: var(--md-sys-color-surface-container-highest);
+  box-shadow: var(--md-sys-elevation-level0);
+}
+
+.md-card-outlined {
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: var(--md-sys-elevation-level0);
+}
+
+/* Typography Classes */
+.md-typescale-display-large {
+  font-family: var(--md-sys-typescale-display-large-font);
+  font-size: var(--md-sys-typescale-display-large-size);
+  font-weight: var(--md-sys-typescale-display-large-weight);
+  line-height: var(--md-sys-typescale-display-large-line-height);
+}
+
+.md-typescale-headline-large {
+  font-family: var(--md-sys-typescale-headline-large-font);
+  font-size: var(--md-sys-typescale-headline-large-size);
+  font-weight: var(--md-sys-typescale-headline-large-weight);
+  line-height: var(--md-sys-typescale-headline-large-line-height);
+}
+
+.md-typescale-headline-medium {
+  font-family: var(--md-sys-typescale-headline-medium-font);
+  font-size: var(--md-sys-typescale-headline-medium-size);
+  font-weight: var(--md-sys-typescale-headline-medium-weight);
+  line-height: var(--md-sys-typescale-headline-medium-line-height);
+}
+
+.md-typescale-title-large {
+  font-family: var(--md-sys-typescale-title-large-font);
+  font-size: var(--md-sys-typescale-title-large-size);
+  font-weight: var(--md-sys-typescale-title-large-weight);
+  line-height: var(--md-sys-typescale-title-large-line-height);
+}
+
+.md-typescale-body-large {
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-size: var(--md-sys-typescale-body-large-size);
+  font-weight: var(--md-sys-typescale-body-large-weight);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+}
+
+.md-typescale-body-medium {
+  font-family: var(--md-sys-typescale-body-medium-font);
+  font-size: var(--md-sys-typescale-body-medium-size);
+  font-weight: var(--md-sys-typescale-body-medium-weight);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+}
+
+.md-typescale-label-large {
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+}

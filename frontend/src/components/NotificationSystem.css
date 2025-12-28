@@ -1,0 +1,147 @@
+.notification-system {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  max-width: 400px;
+  width: 100%;
+}
+
+.notification {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: white;
+  border-left: 4px solid;
+  animation: slideIn 0.3s ease-out;
+}
+
+.notification--success {
+  border-left-color: #10b981;
+  background-color: #f0fdf4;
+}
+
+.notification--error {
+  border-left-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.notification--warning {
+  border-left-color: #f59e0b;
+  background-color: #fffbeb;
+}
+
+.notification--info {
+  border-left-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.notification__icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.notification__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification__title {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.notification--success .notification__title {
+  color: #065f46;
+}
+
+.notification--error .notification__title {
+  color: #991b1b;
+}
+
+.notification--warning .notification__title {
+  color: #92400e;
+}
+
+.notification--info .notification__title {
+  color: #1e40af;
+}
+
+.notification__message {
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+
+.notification--success .notification__message {
+  color: #047857;
+}
+
+.notification--error .notification__message {
+  color: #dc2626;
+}
+
+.notification--warning .notification__message {
+  color: #d97706;
+}
+
+.notification--info .notification__message {
+  color: #2563eb;
+}
+
+.notification__dismiss {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.notification__dismiss:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .notification-system {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .notification {
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .notification__title {
+    font-size: 13px;
+  }
+  
+  .notification__message {
+    font-size: 12px;
+  }
+}

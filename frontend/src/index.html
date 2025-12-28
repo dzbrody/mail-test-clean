@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Validation Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            border-color: #667eea;
+            background-color: #f8f9ff;
+        }
+        
+        .upload-area.dragover {
+            border-color: #667eea;
+            background-color: #f0f2ff;
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .upload-text {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .upload-subtext {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .progress {
+            width: 100%;
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .results {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .results h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .download-btn {
+            background: #28a745;
+            margin-top: 10px;
+        }
+        
+        .download-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📧 Email Validation Service</h1>
+        
+        <div class="upload-area" id="uploadArea">
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">Drop your CSV file here or click to browse</div>
+            <div class="upload-subtext">Supports HubSpot contact exports (.csv files)</div>
+            <input type="file" id="fileInput" accept=".csv" />
+        </div>
+        
+        <button class="btn" id="validateBtn" disabled>Validate Emails</button>
+        
+        <div class="progress" id="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="status" id="status"></div>
+        
+        <div class="results" id="results">
+            <h3>Validation Results</h3>
+            <div class="result-stats" id="resultStats"></div>
+            <button class="btn download-btn" id="downloadBtn">Download Results</button>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://vyxhftdzc7.execute-api.ca-central-1.amazonaws.com/prod';
+        let currentJobId = null;
+        let selectedFile = null;
+
+        // DOM elements
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const validateBtn = document.getElementById('validateBtn');
+        const progress = document.getElementById('progress');
+        const progressBar = document.getElementById('progressBar');
+        const status = document.getElementById('status');
+        const results = document.getElementById('results');
+        const resultStats = document.getElementById('resultStats');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        // File upload handling
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', handleDragOver);
+        uploadArea.addEventListener('dragleave', handleDragLeave);
+        uploadArea.addEventListener('drop', handleDrop);
+        fileInput.addEventListener('change', handleFileSelect);
+        validateBtn.addEventListener('click', handleValidation);
+        downloadBtn.addEventListener('click', handleDownload);
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        }
+
+        function handleFileSelect(e) {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        }
+
+        function handleFile(file) {
+            if (!file.name.toLowerCase().endsWith('.csv')) {
+                showStatus('Please select a CSV file.', 'error');
+                return;
+            }
+
+            selectedFile = file;
+            uploadArea.innerHTML = `
+                <div class="upload-icon">✅</div>
+                <div class="upload-text">${file.name}</div>
+                <div class="upload-subtext">${(file.size / 1024).toFixed(1)} KB</div>
+            `;
+            validateBtn.disabled = false;
+            hideStatus();
+        }
+
+        async function handleValidation() {
+            if (!selectedFile) return;
+
+            try {
+                validateBtn.disabled = true;
+                showProgress();
+                showStatus('Uploading file...', 'info');
+
+                // Upload file
+                const formData = new FormData();
+                formData.append('file', selectedFile);
+
+                const uploadResponse = await fetch(`${API_BASE}/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!uploadResponse.ok) {
+                    throw new Error(`Upload failed: ${uploadResponse.statusText}`);
+                }
+
+                const uploadResult = await uploadResponse.json();
+                currentJobId = uploadResult.jobId;
+
+                showStatus('Starting email validation...', 'info');
+
+                // Start validation
+                const validationResponse = await fetch(`${API_BASE}/validation`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        jobId: currentJobId,
+                        s3Key: uploadResult.s3Key
+                    })
+                });
+
+                if (!validationResponse.ok) {
+                    throw new Error(`Validation failed: ${validationResponse.statusText}`);
+                }
+
+                // Get validation results directly (synchronous validation)
+                const validationResult = await validationResponse.json();
+                
+                showStatus('Validation completed!', 'success');
+                hideProgress();
+                displayResults(validationResult);
+                validateBtn.disabled = false;
+
+            } catch (error) {
+                console.error('Validation error:', error);
+                showStatus(`Error: ${error.message}`, 'error');
+                validateBtn.disabled = false;
+                hideProgress();
+            }
+        }
+
+        async function pollForResults() {
+            try {
+                const response = await fetch(`${API_BASE}/validation/${currentJobId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to check status: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.status === 'completed') {
+                    showStatus('Validation completed!', 'success');
+                    hideProgress();
+                    await loadResults();
+                    validateBtn.disabled = false;
+                } else if (result.status === 'failed') {
+                    throw new Error('Validation failed');
+                } else {
+                    // Still processing
+                    updateProgress(result.progress || 0);
+                    showStatus(`Processing... ${Math.round(result.progress || 0)}%`, 'info');
+                    setTimeout(pollForResults, 2000);
+                }
+            } catch (error) {
+                console.error('Polling error:', error);
+                showStatus(`Error: ${error.message}`, 'error');
+                validateBtn.disabled = false;
+                hideProgress();
+            }
+        }
+
+        async function loadResults() {
+            try {
+                const response = await fetch(`${API_BASE}/results/${currentJobId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to load results: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                console.error('Results error:', error);
+                showStatus(`Error loading results: ${error.message}`, 'error');
+            }
+        }
+
+        function displayResults(data) {
+            // Handle validation result format
+            const validCount = data.validCount || 0;
+            const invalidCount = data.invalidCount || 0;
+            const totalCount = data.processedCount || (validCount + invalidCount);
+            
+            resultStats.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">${totalCount}</div>
+                    <div class="stat-label">Total Emails</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${validCount}</div>
+                    <div class="stat-label">Valid</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${invalidCount}</div>
+                    <div class="stat-label">Invalid</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${Math.round((validCount / totalCount) * 100) || 0}%</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+            `;
+            
+            results.style.display = 'block';
+        }
+
+        async function handleDownload() {
+            if (!currentJobId) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/results/${currentJobId}?format=csv`);
+                
+                if (!response.ok) {
+                    throw new Error(`Download failed: ${response.statusText}`);
+                }
+
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `validation-results-${currentJobId}.csv`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            } catch (error) {
+                console.error('Download error:', error);
+                showStatus(`Download error: ${error.message}`, 'error');
+            }
+        }
+
+        function showStatus(message, type) {
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+        }
+
+        function hideStatus() {
+            status.style.display = 'none';
+        }
+
+        function showProgress() {
+            progress.style.display = 'block';
+            progressBar.style.width = '0%';
+        }
+
+        function hideProgress() {
+            progress.style.display = 'none';
+        }
+
+        function updateProgress(percent) {
+            progressBar.style.width = `${percent}%`;
+        }
+    </script>
+</body>
+</html>
