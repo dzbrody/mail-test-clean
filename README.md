@@ -324,3 +324,9 @@ This service includes comprehensive documentation covering:
 - Robust CSV parsing for HubSpot and other formats
 - Real-time progress tracking and detailed results
 - Production deployment with custom domain and SSL
+
+## Work with me
+
+Daniel Brody is a fractional CTO for founders, CEOs, investors, and PE boards.
+
+[Book a Fractional CTO call](https://ctorescues.com/contact/) · [LinkedIn](https://www.linkedin.com/in/danielbrody/) · [GitHub profile](https://github.com/dzbrody)
